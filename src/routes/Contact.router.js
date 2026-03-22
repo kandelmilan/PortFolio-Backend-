@@ -14,12 +14,12 @@ router.get("/", async (req, res) => {
 
 // Add a new contact
 router.post("/", async (req, res) => {
-  const { name, username, link, icon, bg } = req.body;
-  if (!name || !username || !link || !icon || !bg)
+  const { name, username, link, icon } = req.body; // removed bg
+  if (!name || !username || !link || !icon)
     return res.status(400).json({ message: "All fields required" });
 
   try {
-    const contact = new Contact({ name, username, link, icon, bg });
+    const contact = new Contact({ name, username, link, icon }); // removed bg
     await contact.save();
     res.status(201).json(contact);
   } catch (err) {
@@ -29,10 +29,13 @@ router.post("/", async (req, res) => {
 
 // Update a contact
 router.put("/:id", async (req, res) => {
+  const { name, username, link, icon } = req.body; // removed bg
   try {
-    const updated = await Contact.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
+    const updated = await Contact.findByIdAndUpdate(
+      req.params.id,
+      { name, username, link, icon }, // removed bg
+      { new: true }
+    );
     res.json(updated);
   } catch (err) {
     res.status(500).json({ message: "Server error", error: err.message });
