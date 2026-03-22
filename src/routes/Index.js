@@ -9,7 +9,7 @@ const contactRoutes = require("./Contact.router");
 const authMiddleware = require("../middleware/auth");
 router.use("/hero", heroRoutes);
 router.use("/about", aboutRoutes);
-router.use("/admin", authMiddleware, adminRoutes);//authMiddleware
+router.use("/admin", adminRoutes);//authMiddleware
 router.use("/project", projectRoutes);
 router.use("/contact", contactRoutes);
 
