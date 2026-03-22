@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getProjects, createProject, deleteProject } = require("../controller/Project.controller");
+const { getProjects, createProject, deleteProject } = require("../controller/Project.Controller");
 
 // Get all projects
 router.get("/", getProjects);
